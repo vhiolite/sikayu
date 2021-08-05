@@ -6,9 +6,15 @@
         </button>
         <button x-show="isOpen" @click="isOpen = false" class="h-full w-full fixed inset-0 cursor-default"></button>
         <div x-show="isOpen" class="absolute w-32 bg-white rounded-lg shadow-lg py-2 mt-16">
-            <a href="#" class="block px-4 py-2 account-link hover:text-white">Account</a>
-            <a href="#" class="block px-4 py-2 account-link hover:text-white">Support</a>
-            <a href="#" class="block px-4 py-2 account-link hover:text-white">Sign Out</a>
+            <a href="{{route('profile.show')}}" class="block px-4 py-2 account-link hover:text-white">Account</a>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <a href="{{ route('logout') }}"
+                         onclick="event.preventDefault();
+                                this.closest('form').submit();" class="block px-4 py-2 account-link hover:text-white">
+                    {{ __('Log Out') }}
+                </a>
+            </form>
         </div>
     </div>
 </header>
