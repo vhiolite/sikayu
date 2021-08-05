@@ -3,15 +3,15 @@
         <h1 class="text-3xl text-black pb-6">Dashboard</h1>
 
         <div class="flex flex-wrap mt-6">
-            <div class="w-full lg:w-1/2 pr-0 lg:pr-2">
+            {{-- <div class="w-full lg:w-1/2 pr-0 lg:pr-2">
                 <p class="text-xl pb-3 flex items-center">
                     <i class="fas fa-plus mr-3"></i> Monthly Reports
                 </p>
                 <div class="p-6 bg-white">
                     <canvas id="chartOne" width="400" height="200"></canvas>
                 </div>
-            </div>
-            <div class="w-full lg:w-1/2 pl-0 lg:pl-2 mt-12 lg:mt-0">
+            </div> --}}
+            <div class="w-full lg:w-full pl-0 lg:pl-2 mt-12 lg:mt-0">
                 <p class="text-xl pb-3 flex items-center">
                     <i class="fas fa-check mr-3"></i> Resolved Reports
                 </p>
@@ -94,3 +94,46 @@
         Built by <a target="_blank" href="https://davidgrzyb.com" class="underline">David Grzyb</a>.
     </footer>
 </div>
+  <!-- ChartJS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI=" crossorigin="anonymous"></script>
+
+<script>
+    var chartTwo = document.getElementById('chartTwo');
+        var myLineChart = new Chart(chartTwo, {
+            type: 'line',
+            data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                    label: '# of Votes',
+                    // data: [12, 19, 3, 5, 2, 3],
+                    data: {!!json_encode($kayu)!!},
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+</script>

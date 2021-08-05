@@ -14,12 +14,12 @@ class DashboardComponent extends Component
     { 
         $data = [
             'title' => 'Dashboard SI KAYU',
-            'kayu' => Kayu::count(),
+            'kayu' => Kayu::select('jumlah')->get(),
             'kayuMasuk' => kayuMasuk::count(),
             'kayuKeluar' => kayuKeluar::count(),
 
         ];
 
-        return view('livewire.admin.dashboard-component')->layout('layouts.base');
+        return view('livewire.admin.dashboard-component', $data)->layout('layouts.base');
     }
 }
